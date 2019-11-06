@@ -1,4 +1,6 @@
 const express = require('express')
+const cors = require('cors')
+
 const users = require('./example/pagination')
 
 class App {
@@ -15,6 +17,8 @@ class App {
    * @returns {void}
    */
   bootstrapModule (callback) {
+    this.app.use(cors('*'))
+    this.app.use(express.json())
     this.app.use('/', users)
 
     this.app.listen(this.port, callback)
